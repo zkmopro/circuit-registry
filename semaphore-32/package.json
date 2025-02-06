@@ -1,0 +1,18 @@
+{
+    "name": "semaphore-32",
+    "version": "1.0.0",
+    "main": "index.js",
+    "scripts": {
+        "compile": "circomkit compile semaphore",
+        "setup": "circomkit setup semaphore",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "ISC",
+    "description": "",
+    "dependencies": {
+        "@zk-kit/binary-merkle-root.circom": "^1.0.0",
+        "circomkit": "^0.3.2",
+        "circomlib": "^2.0.5"
+    }
+}
