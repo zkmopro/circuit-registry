@@ -1,8 +1,8 @@
-pragma circom 2.1.6;
+pragma circom 2.1.9;
 
-include "../node_modules/circomlib/circuits/poseidon.circom";
-include "./rsa/rsa.circom";
-include "./rsa/sha.circom";
+include "circomlib/circuits/poseidon.circom";
+include "@zk-email/circuits/lib/rsa.circom";
+include "@zk-email/circuits/lib/sha.circom";
 
 
 /// @title SignatureVerifier
@@ -26,12 +26,12 @@ template SignatureVerifier(n, k, maxDataLength) {
 
   // Hash the data and verify RSA signature - 917344 constraints
   component shaHasher = Sha256Bytes(maxDataLength);
-  shaHasher.in_padded <== qrDataPadded;
-  shaHasher.in_len_padded_bytes <== qrDataPaddedLength;
+  shaHasher.paddedIn <== qrDataPadded;
+  shaHasher.paddedInLength <== qrDataPaddedLength;
   signal sha[256];
   sha <== shaHasher.out;
   
-  component rsa = RSAVerify65537(n, k);
+  component rsa = RSAVerifier65537(n, k);
   var rsaMsgLength = (256 + n) \ n;
   component rsaBaseMsg[rsaMsgLength];
   for (var i = 0; i < rsaMsgLength; i++) {
@@ -45,17 +45,14 @@ template SignatureVerifier(n, k, maxDataLength) {
   }
 
   for (var i = 0; i < rsaMsgLength; i++) {
-      rsa.base_message[i] <== rsaBaseMsg[i].out;
+      rsa.message[i] <== rsaBaseMsg[i].out;
   }
   for (var i = rsaMsgLength; i < k; i++) {
-      rsa.base_message[i] <== 0;
+      rsa.message[i] <== 0;
   }
 
-  for (var i = 0; i < k; i++) {
-      rsa.modulus[i] <== pubKey[i];
-      rsa.signature[i] <== signature[i];
-  }
-
+	rsa.modulus <== pubKey;
+	rsa.signature <== signature;
 
   // Calculate Poseidon hash of the public key (609 constraints)
   // Poseidon component can take only 16 inputs, so we convert k chunks to k/2 chunks.
@@ -65,9 +62,10 @@ template SignatureVerifier(n, k, maxDataLength) {
       poseidonInputSize++;
   }
   assert(poseidonInputSize <= 16);
+
   signal pubkeyHasherInput[poseidonInputSize];
   for (var i = 0; i < poseidonInputSize; i++) {
-      if (i == poseidonInputSize - 1 && poseidonInputSize % 2 == 1) {
+      if (i == poseidonInputSize - 1 && k % 2 == 1) {
           pubkeyHasherInput[i] <== pubKey[i * 2];
       } else {
           pubkeyHasherInput[i] <== pubKey[i * 2] + (1 << n) * pubKey[i * 2 + 1];
