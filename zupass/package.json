@@ -3,8 +3,8 @@
     "version": "1.0.0",
     "main": "index.js",
     "scripts": {
-        "compile": "circomkit compile proto-pod-gpc_1o-1e-5md-0nv-0ei-0x0l-0x0t-0ov3-1ov4",
-        "setup": "circomkit setup proto-pod-gpc_1o-1e-5md-0nv-0ei-0x0l-0x0t-0ov3-1ov4",
+        "compile": "circomkit compile proto-pod-gpc_3o-10e-8md-4nv-2ei-4x20l-5x3t-1ov3-1ov4",
+        "setup": "circomkit setup proto-pod-gpc_3o-10e-8md-4nv-2ei-4x20l-5x3t-1ov3-1ov4",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "author": "",
