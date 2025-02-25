@@ -1,0 +1,45 @@
+{
+  "proto-pod-gpc_3o-10e-8md-4nv-2ei-4x20l-5x3t-1ov3-1ov4": {
+    "file": "proto-pod-gpc",
+    "template": "ProtoPODGPC",
+    "params": [
+      3,
+      10,
+      8,
+      4,
+      2,
+      4,
+      20,
+      5,
+      3,
+      1,
+      1
+    ],
+    "pubs": [
+      "entryObjectIndex",
+      "entryNameHash",
+      "entryIsValueHashRevealed",
+      "virtualEntryIsValueHashRevealed",
+      "entryEqualToOtherEntryByIndex",
+      "entryIsEqualToOtherEntry",
+      "ownerExternalNullifier",
+      "ownerV3EntryIndex",
+      "ownerV3IsNullifierHashRevealed",
+      "ownerV4EntryIndex",
+      "ownerV4IsNullifierHashRevealed",
+      "numericValueEntryIndices",
+      "numericValueInRange",
+      "numericMinValues",
+      "numericMaxValues",
+      "entryInequalityValueIndex",
+      "entryInequalityOtherValueIndex",
+      "entryInequalityIsLessThan",
+      "tupleIndices",
+      "listComparisonValueIndex",
+      "listContainsComparisonValue",
+      "listValidValues",
+      "requireUniqueContentIDs",
+      "globalWatermark"
+    ]
+  }
+}

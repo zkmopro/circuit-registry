@@ -1,0 +1,18 @@
+{
+    "name": "zupass",
+    "version": "1.0.0",
+    "main": "index.js",
+    "scripts": {
+        "compile": "circomkit compile proto-pod-gpc_3o-10e-8md-4nv-2ei-4x20l-5x3t-1ov3-1ov4",
+        "setup": "circomkit setup proto-pod-gpc_3o-10e-8md-4nv-2ei-4x20l-5x3t-1ov3-1ov4",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "ISC",
+    "description": "",
+    "dependencies": {
+        "@zk-kit/binary-merkle-root.circom": "^1.0.0",
+        "circomkit": "^0.3.2",
+        "circomlib": "^2.0.5"
+    }
+}
