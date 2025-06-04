@@ -1,0 +1,6 @@
+[package]
+name = "noir_multiplier2"
+type = "bin"
+authors = [""]
+
+[dependencies]
